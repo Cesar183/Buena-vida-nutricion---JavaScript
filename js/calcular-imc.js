@@ -1,5 +1,4 @@
-var pacientes = document.querySelectorAll(".paciente");
-console.log(pacientes);
+var pacientes = document.querySelectorAll(".paciente");  
 for(var i=0; i<pacientes.length; i++)
 {
     var paciente = pacientes[i];
@@ -32,11 +31,11 @@ for(var i=0; i<pacientes.length; i++)
     }
     if(pesoEsValido && alturaEsValida)
     {
-        console.log("Paciente " + nombre);
-        console.log(peso);
-        console.log(altura);
-        var imc = peso / (altura * altura);
-        console.log(imc);
-        tdIMC.textContent = imc.toFixed(1);
+        tdIMC.textContent = CalcularIMC(peso,altura);
     }
+}
+function CalcularIMC(peso,altura)
+{
+    var imc = peso / (altura * altura);
+    return imc.toFixed(1)
 }
