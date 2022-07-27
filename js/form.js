@@ -6,10 +6,8 @@ function Mostrarmensaje()
     var form = document.querySelector("#form-adicionar");
     var tabla = document.querySelector("#tabla-pacientes");
 
-    var nombre = form.nombre.value;
-    var peso = form.peso.value;
-    var altura = form.altura.value;
-    var gordura = form.gordura.value;
+    var paciente = CapturarDatosPaciente(form);
+    console.log(paciente);
 
     pacienteTr = document.createElement("tr");
     nombreTd = document.createElement("td");
@@ -18,11 +16,11 @@ function Mostrarmensaje()
     gorduraTd = document.createElement("td");
     imcTd = document.createElement("td");
 
-    nombreTd.textContent = nombre;
-    pesoTd.textContent = peso;
-    alturaTd.textContent = altura;
-    gorduraTd.textContent = gordura;
-    imcTd.textContent = CalcularIMC(peso,altura);
+    nombreTd.textContent = paciente.nombre;
+    pesoTd.textContent = paciente.peso;
+    alturaTd.textContent = paciente.altura;
+    gorduraTd.textContent = paciente.gordura;
+    imcTd.textContent = paciente.imc;
 
     pacienteTr.appendChild(nombreTd);
     pacienteTr.appendChild(pesoTd);
@@ -31,4 +29,16 @@ function Mostrarmensaje()
     pacienteTr.appendChild(imcTd);
 
     tabla.appendChild(pacienteTr);
+}
+function CapturarDatosPaciente(form)
+{
+    var paciente = {
+        nombre : form.nombre.value,
+        peso : form.peso.value,
+        altura : form.altura.value,
+        gordura : form.gordura.value,
+        imc : CalcularIMC(peso,altura)
+    }
+    return paciente
+    
 }
