@@ -1,64 +1,57 @@
-var pacientes = document.querySelectorAll(".paciente");  
-for(var i=0; i<pacientes.length; i++)
+var pacientes = document.querySelectorAll(".paciente");
+for(var i = 0;i< pacientes.length;i++)
 {
     var paciente = pacientes[i];
     var tdPeso = paciente.querySelector(".info-peso");
-    var peso = parseFloat(tdPeso.textContent);
-    var tdNombre = paciente.querySelector(".info-nombre");
-    var nombre = tdNombre.textContent;
-
+    var peso = tdPeso.textContent;
     var tdAltura = paciente.querySelector(".info-altura");
-    var altura = parseFloat(tdAltura.textContent);
-
+    var altura = tdAltura.textContent;
     var tdIMC = paciente.querySelector(".info-imc");
-    var imc = peso / (altura * altura);
-    tdIMC.textContent = imc;
 
     pesoEsValido = validarPeso(peso);
     alturaEsValida = validarAltura(altura);
 
-    if(pesoEsValido)
+    if(!pesoEsValido)
     {
-        tdIMC.textContent = ("Peso incorrecto");
+        console.log("Peso incorrecto");
+        tdIMC.textContent = "Peso incorrecto";
         pesoEsValido = false;
         paciente.classList.add("paciente-incorrecto");
     }
-    if(alturaEsValida)
+    if(!alturaEsValida)
     {
-        tdIMC.textContent = ("Altura incorrecta");
+        console.log("Altura incorrecta");
+        tdIMC.textContent = "Altura incorrecta";
         alturaEsValida = false;
         paciente.classList.add("paciente-incorrecto");
     }
     if(pesoEsValido && alturaEsValida)
     {
-        tdIMC.textContent = CalcularIMC(peso,altura);
+        tdIMC.textContent = calcularIMC(peso,altura);
     }
 }
-function CalcularIMC(peso,altura)
+function calcularIMC(peso,altura)
 {
     var imc = peso / (altura * altura);
-    return imc.toFixed(1)
+    return imc.toFixed(2);
 }
 function validarPeso(peso)
 {
-    if(peso < 0 || peso > 1000)
+    if (peso >= 0 && peso < 1000)
     {
         return true;
-    }
-    else
+    }else
     {
         return false;
     }
 }
 function validarAltura(altura)
 {
-    if(altura < 0 || altura > 4)
+    if (altura >= 0 && altura < 3.00)
     {
         return true;
-    }
-    else
+    }else
     {
         return false;
     }
 }
-
